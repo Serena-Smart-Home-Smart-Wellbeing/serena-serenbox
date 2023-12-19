@@ -12,12 +12,17 @@ import FaceDetection from "@mediapipe/face_detection";
 import { useCallback, useEffect, useState } from "react";
 import { CameraOptions, useFaceDetection } from "react-use-face-detection";
 import Webcam from "react-webcam";
+import analyzeEmotions, {
+    DataURIToBlob,
+    Emotions,
+} from "../../utils/emotion-detector";
 
 export interface FaceDetectorProps {}
 
 const FaceDetector = (): JSX.Element => {
     const [imgSrc, setImgSrc] = useState(null);
-    const [isRunning, setSessionRunning] = useBoolean();
+    const [isSessionRunning, setSessionRunning] = useBoolean();
+    const [emotions, setEmotions] = useState<Emotions | null>(null);
 
     const theme = useTheme();
     const size = 300;
@@ -54,31 +59,47 @@ const FaceDetector = (): JSX.Element => {
         }
     }
 
-    if (!isRunning) {
+    if (!isSessionRunning) {
         infoText = "Allow camera permission, then click Start";
     }
 
     const capture = useCallback(() => {
-        if (webcamRef && isRunning) {
+        if (webcamRef && isSessionRunning) {
             //@ts-expect-error: the type definition for getScreenshot is wrong
             const imageSrc = webcamRef.current.getScreenshot();
             setImgSrc(imageSrc);
 
             // TODO call emotion detector
         }
-    }, [webcamRef, isRunning]);
+    }, [webcamRef, isSessionRunning]);
 
     useEffect(() => {
-        if (detected) {
-            const interval = setInterval(() => {
-                capture();
-            }, 5000);
+        if (isSessionRunning && detected) {
+            capture();
+            const interval = setInterval(async () => {
+                try {
+                    capture();
+
+                    const image = new File(
+                        [DataURIToBlob(imgSrc || "")],
+                        "user.jpg",
+                        {
+                            type: "image/jpeg",
+                        }
+                    );
+                    const emotions = await analyzeEmotions(image);
+
+                    setEmotions(emotions);
+                } catch (err) {
+                    console.error(err);
+                }
+            }, 500);
 
             return () => {
                 clearInterval(interval);
             };
         }
-    }, [capture, detected]);
+    }, [capture, detected, imgSrc, isSessionRunning]);
 
     const onClick = () => {
         // if (!isWebcamPermissionGranted) {
@@ -96,9 +117,9 @@ const FaceDetector = (): JSX.Element => {
 
             <Button
                 onClick={onClick}
-                colorScheme={isRunning ? "red" : "green"}
+                colorScheme={isSessionRunning ? "red" : "green"}
             >
-                {isRunning ? "Stop" : "Start"}
+                {isSessionRunning ? "Stop" : "Start"}
             </Button>
 
             <Box
@@ -108,7 +129,7 @@ const FaceDetector = (): JSX.Element => {
                 rounded="1rem"
             >
                 {!isLoading &&
-                    isRunning &&
+                    isSessionRunning &&
                     boundingBox.map((box, index) => (
                         <Box
                             // rounded="inherit"
@@ -138,6 +159,21 @@ const FaceDetector = (): JSX.Element => {
                     screenshotQuality={1}
                 />
             </Box>
+
+            <Heading
+                as="h3"
+                size="md"
+            >
+                Emotions
+            </Heading>
+            <Text align="center">
+                {emotions &&
+                    Object.entries(emotions).map(([emotion, value]) => (
+                        <Text key={emotion}>
+                            {emotion}: {value}
+                        </Text>
+                    ))}
+            </Text>
         </VStack>
     );
 };
