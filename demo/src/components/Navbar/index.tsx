@@ -1,4 +1,4 @@
-import { HStack, Heading, Image } from '@chakra-ui/react';
+import { HStack, Heading, Image } from "@chakra-ui/react";
 
 const Navbar = () => {
     return (
@@ -17,7 +17,8 @@ const Navbar = () => {
                 />
                 <Heading
                     color="serena.white"
-                    fontSize="x-large"
+                    as="h1"
+                    size="md"
                 >
                     Serena SerenBox Demo
                 </Heading>
