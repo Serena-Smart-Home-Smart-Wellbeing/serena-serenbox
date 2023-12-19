@@ -1,7 +1,6 @@
-import { Box, Stack } from "@chakra-ui/react";
-import SectionCard from "../SectionCard";
+import { Stack } from "@chakra-ui/react";
+import Detector from "../Detector";
 import Navbar from "../Navbar";
-import FaceDetector from "../Detector/FaceDetector";
 
 const App = () => {
     return (
@@ -11,9 +10,7 @@ const App = () => {
             h="100vh"
         >
             <Navbar />
-            <SectionCard>
-                <FaceDetector />
-            </SectionCard>
+            <Detector />
         </Stack>
     );
 };
