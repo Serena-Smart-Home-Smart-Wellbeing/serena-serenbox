@@ -91,9 +91,9 @@ const SerenBoxConfig = () => {
                         <option value={DiffusionOption.OPPOSITE_MOOD}>
                             {DiffusionOption.OPPOSITE_MOOD}
                         </option>
-                        <option value={DiffusionOption.AUTO}>
+                        {/* <option value={DiffusionOption.AUTO}>
                             {DiffusionOption.AUTO}
-                        </option>
+                        </option> */}
                     </Select>
                 </FormControl>
 

@@ -1,23 +1,26 @@
-import { VStack, Heading, Image, HStack } from "@chakra-ui/react";
+import { HStack, Heading, Image, VStack } from "@chakra-ui/react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import Countdown from "react-countdown";
+import { DiffusionOptionContext } from "../../contexts/diffusion-option";
+import { DetectionMode, DiffusionOption } from "../../types/diffusion-options";
 import SectionCard from "../SectionCard";
 import OilCard from "./OilCard";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { DiffusionOptionContext } from "../../contexts/diffusion-option";
-import Countdown from "react-countdown";
 
 export interface SerenBoxProps {}
 
 const SerenBox = () => {
     const {
-        slotA,
-        slotB,
         detectionMode,
         diffusionOption,
         duration,
         isSessionRunning,
         setSessionRunning,
+        energetic,
+        relax,
     } = useContext(DiffusionOptionContext);
     const ref = useRef<Countdown | null>(null);
+    const [activeSlot, setActiveSlot] = useState<"A" | "B">("A");
+    const [onceModeTaken, setOnceModeTaken] = useState(false);
 
     const [date, setDate] = useState(Date.now() + duration * 60 * 1000);
 
@@ -35,6 +38,48 @@ const SerenBox = () => {
         }
     }, [isSessionRunning, stopSession]);
 
+    const toggleSlots = useCallback(() => {
+        if (detectionMode === DetectionMode.INTERVAL) {
+            if (diffusionOption === DiffusionOption.MATCH_MOOD) {
+                if (energetic.total > relax.total) {
+                    setActiveSlot("A");
+                } else {
+                    setActiveSlot("B");
+                }
+            } else {
+                if (energetic.total > relax.total) {
+                    setActiveSlot("B");
+                } else {
+                    setActiveSlot("A");
+                }
+            }
+        } else if (detectionMode === DetectionMode.ONCE && !onceModeTaken) {
+            if (diffusionOption === DiffusionOption.MATCH_MOOD) {
+                if (energetic.total > relax.total) {
+                    setActiveSlot("A");
+                } else {
+                    setActiveSlot("B");
+                }
+            } else {
+                if (energetic.total > relax.total) {
+                    setActiveSlot("B");
+                } else {
+                    setActiveSlot("A");
+                }
+            }
+
+            if (energetic.total > 0 || relax.total > 0) {
+                setOnceModeTaken(true);
+            }
+        }
+    }, [
+        detectionMode,
+        diffusionOption,
+        energetic.total,
+        onceModeTaken,
+        relax.total,
+    ]);
+
     return (
         <SectionCard>
             <VStack>
@@ -51,7 +96,7 @@ const SerenBox = () => {
                     minW="10em"
                 />
 
-                {isSessionRunning && (
+                {
                     <Countdown
                         ref={ref}
                         date={date}
@@ -73,8 +118,11 @@ const SerenBox = () => {
                         }}
                         onStop={stopSession}
                         onPause={stopSession}
+                        intervalDelay={500}
+                        onTick={toggleSlots}
+                        autoStart={false}
                     />
-                )}
+                }
 
                 <HStack>
                     <OilCard
@@ -82,14 +130,14 @@ const SerenBox = () => {
                         name="Citronella Oil"
                         capacity={50}
                         max_capacity={100}
-                        isActive={slotA}
+                        isActive={activeSlot === "A"}
                     />
                     <OilCard
                         slot="B"
                         name="Cajuput Oil"
                         capacity={50}
                         max_capacity={100}
-                        isActive={slotB}
+                        isActive={activeSlot === "B"}
                     />
                 </HStack>
             </VStack>

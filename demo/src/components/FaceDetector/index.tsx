@@ -50,7 +50,6 @@ const FaceDetector = (): JSX.Element => {
 
     useEffect(() => {
         if (isSessionRunning && detected) {
-            capture();
             const interval = setInterval(async () => {
                 const image = new File(
                     [DataURIToBlob(imgSrc || "")],

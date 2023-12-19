@@ -16,6 +16,12 @@ export interface IDiffusionOptionContext {
     slotB: boolean;
     isSessionRunning: boolean;
     emotions: Emotions;
+    energetic: Pick<Emotions, "anger" | "fear" | "surprise"> & {
+        total: number;
+    };
+    relax: Pick<Emotions, "joy" | "sadness" | "neutral" | "disgust"> & {
+        total: number;
+    };
     setSessionRunning: Dispatch<SetStateAction<boolean>>;
     setDuration: Dispatch<SetStateAction<number>>;
     setDetectionMode: Dispatch<SetStateAction<DetectionMode>>;
@@ -46,6 +52,19 @@ export const DiffusionOptionContext = createContext<IDiffusionOptionContext>({
         sadness: 0,
         surprise: 0,
         neutral: 0,
+    },
+    energetic: {
+        anger: 0,
+        fear: 0,
+        surprise: 0,
+        total: 0,
+    },
+    relax: {
+        joy: 0,
+        sadness: 0,
+        neutral: 0,
+        disgust: 0,
+        total: 0,
     },
     setEmotions: () => {},
 });
@@ -88,6 +107,19 @@ export const DiffusionOptionProvider = ({
         setSessionRunning,
         emotions,
         setEmotions,
+        energetic: {
+            anger: emotions.anger,
+            fear: emotions.fear,
+            surprise: emotions.surprise,
+            total: emotions.anger + emotions.fear + emotions.surprise,
+        },
+        relax: {
+            joy: emotions.joy,
+            sadness: emotions.sadness,
+            neutral: emotions.neutral,
+            disgust: emotions.disgust,
+            total: emotions.joy + emotions.sadness + emotions.neutral,
+        },
     };
 
     return (
