@@ -18,7 +18,7 @@ export interface FaceDetectorProps {}
 
 const FaceDetector = (): JSX.Element => {
     const [imgSrc, setImgSrc] = useState(null);
-    console.log(imgSrc);
+
     const { isSessionRunning, emotions, setEmotions } = useContext(
         DiffusionOptionContext
     );
