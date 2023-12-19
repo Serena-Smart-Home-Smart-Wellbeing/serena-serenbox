@@ -57,32 +57,24 @@ const FaceDetector = (): JSX.Element => {
             const interval = setInterval(async () => {
                 try {
                     capture();
+                } catch (err) {
+                    console.log(err);
+                }
 
-                    const image = new File(
-                        [DataURIToBlob(imgSrc || "")],
-                        "user.jpg",
-                        {
-                            type: "image/jpeg",
-                        }
-                    );
+                const image = new File(
+                    [DataURIToBlob(imgSrc || "")],
+                    "user.jpg",
+                    {
+                        type: "image/jpeg",
+                    }
+                );
+
+                try {
                     const emotions = await analyzeEmotions(image);
                     setEmotions(emotions);
                 } catch (err) {
-                    try {
-                        capture();
-
-                        const image = new File(
-                            [DataURIToBlob(imgSrc || "")],
-                            "user.jpg",
-                            {
-                                type: "image/jpeg",
-                            }
-                        );
-                        const emotions = await analyzeEmotions(image);
-                        setEmotions(emotions);
-                    } catch (err) {
-                        console.log(err);
-                    }
+                    const emotions = await analyzeEmotions(image);
+                    setEmotions(emotions);
                 }
             }, 3000);
 
