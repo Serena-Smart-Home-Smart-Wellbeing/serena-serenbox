@@ -60,8 +60,8 @@ const FaceDetector = (): JSX.Element => {
 
             const settings = display.getVideoTracks()[0].getSettings();
 
-            setWidth(settings.width! / 2);
-            setHeight(settings.height! / 2);
+            setWidth(settings.width!);
+            setHeight(settings.height!);
         };
 
         getUsersCameraSize();
