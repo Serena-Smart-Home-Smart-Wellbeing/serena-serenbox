@@ -1,12 +1,16 @@
 import { Stack } from "@chakra-ui/react";
-import Detector from "../Detector";
+import FaceDetector from "../FaceDetector";
 import Navbar from "../Navbar";
+import SerenBox from "../SerenBox";
+import SerenBoxConfig from "../SerenBoxConfigs";
 
 const App = () => {
     return (
         <Stack bg="serena.green.500">
             <Navbar />
-            <Detector />
+            <SerenBoxConfig />
+            <FaceDetector />
+            <SerenBox />
         </Stack>
     );
 };

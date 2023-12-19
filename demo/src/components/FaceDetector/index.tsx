@@ -8,7 +8,7 @@ import { DiffusionOptionContext } from "../../contexts/diffusion-option.tsx";
 import analyzeEmotions, {
     DataURIToBlob,
     Emotions,
-} from "../../utils/emotion-detector";
+} from "../../utils/emotion-detector.ts";
 import SectionCard from "../SectionCard/index.tsx";
 import EmotionsList from "./EmotionsList.tsx";
 
