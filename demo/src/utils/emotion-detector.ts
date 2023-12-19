@@ -15,7 +15,7 @@ export const DataURIToBlob = (dataURI: string) => {
     return new Blob([ia], { type: mimeString });
 };
 
-export interface Emotions {
+export interface ServerEmotions {
     angry: number;
     fear: number;
     surprise: number;
@@ -25,19 +25,34 @@ export interface Emotions {
     sad: number;
 }
 
+export interface Emotions {
+    anger: number;
+    fear: number;
+    surprise: number;
+    disgust: number;
+    joy: number;
+    neutral: number;
+    sadness: number;
+}
+
 const analyzeEmotions = async (image: File) => {
     const form = new FormData();
     form.append("image", image);
 
     const { data: emotions } = await axios.post<
         unknown,
-        AxiosResponse<Emotions>
+        AxiosResponse<ServerEmotions>
     >(
         "https://serena-backend-2g6tjw7nja-et.a.run.app/serena-emotion-detector/detect",
         form
     );
 
-    return emotions;
+    return {
+        ...emotions,
+        joy: emotions.happy,
+        sadness: emotions.sad,
+        anger: emotions.angry,
+    };
 };
 
 export default analyzeEmotions;

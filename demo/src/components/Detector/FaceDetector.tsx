@@ -10,13 +10,22 @@ import analyzeEmotions, {
     Emotions,
 } from "../../utils/emotion-detector";
 import SectionCard from "../SectionCard/index.tsx";
+import EmotionsList from "./EmotionsList.tsx";
 
 export interface FaceDetectorProps {}
 
 const FaceDetector = (): JSX.Element => {
     const [imgSrc, setImgSrc] = useState(null);
     const { isSessionRunning } = useContext(DiffusionOptionContext);
-    const [emotions, setEmotions] = useState<Emotions | null>(null);
+    const [emotions, setEmotions] = useState<Emotions>({
+        neutral: 0,
+        joy: 0,
+        sadness: 0,
+        disgust: 0,
+        anger: 0,
+        fear: 0,
+        surprise: 0,
+    });
 
     const theme = useTheme();
     const size = 300;
@@ -68,7 +77,7 @@ const FaceDetector = (): JSX.Element => {
                 } catch (err) {
                     console.error(err);
                 }
-            }, 500);
+            }, 3000);
 
             return () => {
                 clearInterval(interval);
@@ -96,6 +105,12 @@ const FaceDetector = (): JSX.Element => {
     return (
         <SectionCard>
             <VStack>
+                <Heading
+                    as="h3"
+                    size="md"
+                >
+                    Emotion Detector
+                </Heading>
                 <Text align="center">{infoText}</Text>
 
                 <Box
@@ -135,20 +150,14 @@ const FaceDetector = (): JSX.Element => {
                         screenshotQuality={1}
                     />
                 </Box>
+
                 <Heading
                     as="h3"
                     size="md"
                 >
                     Emotions
                 </Heading>
-                <Text align="center">
-                    {emotions &&
-                        Object.entries(emotions).map(([emotion, value]) => (
-                            <Text key={emotion}>
-                                {emotion}: {value}
-                            </Text>
-                        ))}
-                </Text>
+                <EmotionsList emotions={emotions} />
             </VStack>
         </SectionCard>
     );

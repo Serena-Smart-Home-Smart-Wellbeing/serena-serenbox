@@ -27,8 +27,6 @@ const SerenBoxConfig = () => {
         setDetectionMode,
         setDiffusionOption,
         setDuration,
-        setSlotA,
-        setSlotB,
         setSessionRunning,
         isSessionRunning,
     } = useContext(DiffusionOptionContext);
