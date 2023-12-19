@@ -1,4 +1,4 @@
-import { HStack, Heading, Image, VStack } from "@chakra-ui/react";
+import { Box, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import Countdown from "react-countdown";
 import { DiffusionOptionContext } from "../../contexts/diffusion-option";
@@ -80,6 +80,79 @@ const SerenBox = () => {
         relax.total,
     ]);
 
+    const emotion = (
+        <Text>
+            You are feeling{" "}
+            <Box
+                as="span"
+                color="orange.300"
+                fontWeight="bold"
+            >
+                {energetic.total.toFixed(2)}% energetic
+            </Box>{" "}
+            and{" "}
+            <Box
+                as="span"
+                color="blue.300"
+                fontWeight="bold"
+            >
+                {relax.total.toFixed(2)}%{" "}
+            </Box>{" "}
+            relaxed.
+        </Text>
+    );
+    const choice = (
+        <Text>
+            You chose{" "}
+            <Box
+                as="span"
+                color="purple.300"
+                fontWeight="bold"
+            >
+                {diffusionOption}
+            </Box>
+            , so SerenBox activated{" "}
+            <Box
+                as="span"
+                color="purple.300"
+                fontWeight="bold"
+            >
+                slot {activeSlot}
+            </Box>
+            .
+        </Text>
+    );
+    const reason = (
+        <Text>
+            You chose{" "}
+            <Box
+                as="span"
+                color="pink.500"
+                fontWeight="bold"
+            >
+                {detectionMode}
+            </Box>
+            , so SerenBox will update the slot{" "}
+            <Box
+                as="span"
+                color="pink.500"
+                fontWeight="bold"
+            >
+                {detectionMode === DetectionMode.INTERVAL
+                    ? "regularly"
+                    : "only once"}{" "}
+                .
+            </Box>
+        </Text>
+    );
+    const explaination = (
+        <VStack>
+            {emotion}
+            {choice}
+            {reason}
+        </VStack>
+    );
+
     return (
         <SectionCard>
             <VStack>
@@ -96,7 +169,8 @@ const SerenBox = () => {
                     minW="10em"
                 />
 
-                {
+                <VStack spacing="0">
+                    <Text align="center">Time left</Text>
                     <Countdown
                         ref={ref}
                         date={date}
@@ -122,7 +196,16 @@ const SerenBox = () => {
                         onTick={toggleSlots}
                         autoStart={false}
                     />
-                }
+                </VStack>
+
+                {isSessionRunning && (
+                    <Text
+                        align="center"
+                        fontSize="x-large"
+                    >
+                        {explaination}
+                    </Text>
+                )}
 
                 <HStack>
                     <OilCard
