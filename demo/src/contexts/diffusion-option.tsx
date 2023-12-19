@@ -13,6 +13,8 @@ export interface IDiffusionOptionContext {
     diffusionOption: DiffusionOption;
     slotA: boolean;
     slotB: boolean;
+    isSessionRunning: boolean;
+    setSessionRunning: Dispatch<SetStateAction<boolean>>;
     setDuration: Dispatch<SetStateAction<number>>;
     setDetectionMode: Dispatch<SetStateAction<DetectionMode>>;
     setDiffusionOption: Dispatch<SetStateAction<DiffusionOption>>;
@@ -31,6 +33,8 @@ export const DiffusionOptionContext = createContext<IDiffusionOptionContext>({
     setSlotA: () => {},
     slotB: false,
     setSlotB: () => {},
+    isSessionRunning: false,
+    setSessionRunning: () => {},
 });
 
 export const DiffusionOptionProvider = ({
@@ -45,6 +49,7 @@ export const DiffusionOptionProvider = ({
     );
     const [slotA, setSlotA] = useState(false);
     const [slotB, setSlotB] = useState(false);
+    const [isSessionRunning, setSessionRunning] = useState(false);
 
     const context: IDiffusionOptionContext = {
         duration,
@@ -57,6 +62,8 @@ export const DiffusionOptionProvider = ({
         setSlotA,
         slotB,
         setSlotB,
+        isSessionRunning,
+        setSessionRunning,
     };
 
     return (

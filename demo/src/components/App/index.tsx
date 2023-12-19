@@ -4,11 +4,7 @@ import Navbar from "../Navbar";
 
 const App = () => {
     return (
-        <Stack
-            bg="serena.green.500"
-            w="100vw"
-            h="100vh"
-        >
+        <Stack bg="serena.green.500">
             <Navbar />
             <Detector />
         </Stack>

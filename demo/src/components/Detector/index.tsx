@@ -1,14 +1,17 @@
-import { VStack } from "@chakra-ui/react";
-import SectionCard from "../SectionCard";
+import { Heading, VStack } from "@chakra-ui/react";
+import SerenBoxConfig from "../SerenBoxConfigs";
 import FaceDetector from "./FaceDetector";
 
 const Detector = () => {
     return (
-        <SectionCard>
-            <VStack>
-                <FaceDetector />
-            </VStack>
-        </SectionCard>
+        <VStack
+            spacing="4"
+            boxSize="max-content"
+        >
+            <Heading>Emotion Detector</Heading>
+            <SerenBoxConfig />
+            <FaceDetector />
+        </VStack>
     );
 };
 
