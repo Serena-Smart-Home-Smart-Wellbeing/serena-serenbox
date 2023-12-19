@@ -7,7 +7,6 @@ import Webcam from "react-webcam";
 import { DiffusionOptionContext } from "../../contexts/diffusion-option.tsx";
 import analyzeEmotions, {
     DataURIToBlob,
-    Emotions,
 } from "../../utils/emotion-detector.ts";
 import SectionCard from "../SectionCard/index.tsx";
 import EmotionsList from "./EmotionsList.tsx";
@@ -16,17 +15,9 @@ export interface FaceDetectorProps {}
 
 const FaceDetector = (): JSX.Element => {
     const [imgSrc, setImgSrc] = useState(null);
-    const { isSessionRunning } = useContext(DiffusionOptionContext);
-    const [emotions, setEmotions] = useState<Emotions>({
-        neutral: 0,
-        joy: 0,
-        sadness: 0,
-        disgust: 0,
-        anger: 0,
-        fear: 0,
-        surprise: 0,
-    });
-
+    const { isSessionRunning, emotions, setEmotions } = useContext(
+        DiffusionOptionContext
+    );
     const theme = useTheme();
     const size = 300;
     const width = size;
@@ -61,21 +52,21 @@ const FaceDetector = (): JSX.Element => {
         if (isSessionRunning && detected) {
             capture();
             const interval = setInterval(async () => {
+                const image = new File(
+                    [DataURIToBlob(imgSrc || "")],
+                    "user.jpg",
+                    {
+                        type: "image/jpeg",
+                    }
+                );
+
                 try {
                     capture();
-
-                    const image = new File(
-                        [DataURIToBlob(imgSrc || "")],
-                        "user.jpg",
-                        {
-                            type: "image/jpeg",
-                        }
-                    );
                     const emotions = await analyzeEmotions(image);
-
                     setEmotions(emotions);
                 } catch (err) {
-                    console.error(err);
+                    const emotions = await analyzeEmotions(image);
+                    setEmotions(emotions);
                 }
             }, 3000);
 
@@ -83,7 +74,7 @@ const FaceDetector = (): JSX.Element => {
                 clearInterval(interval);
             };
         }
-    }, [capture, detected, imgSrc, isSessionRunning]);
+    }, [capture, detected, imgSrc, isSessionRunning, setEmotions]);
 
     let infoText = "Loading...";
     if (!isLoading) {
