@@ -55,22 +55,34 @@ const FaceDetector = (): JSX.Element => {
     useEffect(() => {
         if (isSessionRunning && detected) {
             const interval = setInterval(async () => {
-                capture();
-
-                const image = new File(
-                    [DataURIToBlob(imgSrc || "")],
-                    "user.jpg",
-                    {
-                        type: "image/jpeg",
-                    }
-                );
-
                 try {
+                    capture();
+
+                    const image = new File(
+                        [DataURIToBlob(imgSrc || "")],
+                        "user.jpg",
+                        {
+                            type: "image/jpeg",
+                        }
+                    );
                     const emotions = await analyzeEmotions(image);
                     setEmotions(emotions);
                 } catch (err) {
-                    const emotions = await analyzeEmotions(image);
-                    setEmotions(emotions);
+                    try {
+                        capture();
+
+                        const image = new File(
+                            [DataURIToBlob(imgSrc || "")],
+                            "user.jpg",
+                            {
+                                type: "image/jpeg",
+                            }
+                        );
+                        const emotions = await analyzeEmotions(image);
+                        setEmotions(emotions);
+                    } catch (err) {
+                        console.log(err);
+                    }
                 }
             }, 3000);
 
