@@ -100,6 +100,7 @@ const SerenBoxConfig = () => {
                 <Text align="center">{infoText}</Text>
 
                 <Button
+                    w="full"
                     onClick={onClick}
                     colorScheme={isSessionRunning ? "red" : "green"}
                 >

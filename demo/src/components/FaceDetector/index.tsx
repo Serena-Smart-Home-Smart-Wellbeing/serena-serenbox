@@ -1,4 +1,4 @@
-import { Box, Heading, Text, VStack, useTheme } from "@chakra-ui/react";
+import { Box, Heading, Stack, Text, VStack, useTheme } from "@chakra-ui/react";
 import { Camera } from "@mediapipe/camera_utils";
 import FaceDetection from "@mediapipe/face_detection";
 import { useCallback, useContext, useEffect, useState } from "react";
@@ -94,61 +94,75 @@ const FaceDetector = (): JSX.Element => {
 
     return (
         <SectionCard>
-            <VStack>
-                <Heading
-                    as="h3"
-                    size="md"
-                >
-                    Emotion Detector
-                </Heading>
-                <Text align="center">{infoText}</Text>
+            <Stack
+                direction={{
+                    base: "column",
+                    lg: "row",
+                }}
+                justify="space-between"
+                align={{
+                    base: "center",
+                    lg: "end",
+                }}
+            >
+                <VStack>
+                    <Heading
+                        as="h3"
+                        size="md"
+                    >
+                        Emotion Detector
+                    </Heading>
+                    <Text align="center">{infoText}</Text>
+                    <Box
+                        w={width}
+                        h={height}
+                        pos="relative"
+                        rounded="1rem"
+                    >
+                        {!isLoading &&
+                            isSessionRunning &&
+                            boundingBox.map((box, index) => (
+                                <Box
+                                    // rounded="inherit"
+                                    key={`${index + 1}`}
+                                    style={{
+                                        border:
+                                            "4px solid " +
+                                            theme.colors.yellow[300],
+                                        position: "absolute",
+                                        top: `${box.yCenter * 100}%`,
+                                        left: `${box.xCenter * 100}%`,
+                                        width: `${box.width * 100}%`,
+                                        height: `${box.height * 100}%`,
+                                        zIndex: 1,
+                                    }}
+                                />
+                            ))}
+                        <Webcam
+                            ref={webcamRef}
+                            forceScreenshotSourceSize
+                            style={{
+                                height,
+                                width,
+                                position: "absolute",
+                                borderRadius: "inherit",
+                            }}
+                            screenshotFormat="image/jpeg"
+                            screenshotQuality={1}
+                        />
+                    </Box>
+                </VStack>
 
-                <Box
-                    w={width}
-                    h={height}
-                    pos="relative"
-                    rounded="1rem"
-                >
-                    {!isLoading &&
-                        isSessionRunning &&
-                        boundingBox.map((box, index) => (
-                            <Box
-                                // rounded="inherit"
-                                key={`${index + 1}`}
-                                style={{
-                                    border:
-                                        "4px solid " + theme.colors.yellow[300],
-                                    position: "absolute",
-                                    top: `${box.yCenter * 100}%`,
-                                    left: `${box.xCenter * 100}%`,
-                                    width: `${box.width * 100}%`,
-                                    height: `${box.height * 100}%`,
-                                    zIndex: 1,
-                                }}
-                            />
-                        ))}
-                    <Webcam
-                        ref={webcamRef}
-                        forceScreenshotSourceSize
-                        style={{
-                            height,
-                            width,
-                            position: "absolute",
-                            borderRadius: "inherit",
-                        }}
-                        screenshotFormat="image/jpeg"
-                        screenshotQuality={1}
-                    />
-                </Box>
-
-                <Heading
-                    as="h3"
-                    size="md"
-                >
-                    Emotions
-                </Heading>
-                <EmotionsList emotions={emotions} />
-            </VStack>
+                <VStack>
+                    <Heading
+                        as="h3"
+                        size="md"
+                    >
+                        Emotions
+                    </Heading>
+                    <EmotionsList emotions={emotions} />
+                </VStack>
+            </Stack>
         </SectionCard>
     );
 };

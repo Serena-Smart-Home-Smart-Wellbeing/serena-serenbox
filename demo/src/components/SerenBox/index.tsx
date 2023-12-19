@@ -1,4 +1,12 @@
-import { Box, HStack, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import {
+    Box,
+    HStack,
+    Heading,
+    Image,
+    Stack,
+    Text,
+    VStack,
+} from "@chakra-ui/react";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import Countdown from "react-countdown";
 import { DiffusionOptionContext } from "../../contexts/diffusion-option";
@@ -154,76 +162,84 @@ const SerenBox = () => {
     );
 
     return (
-        <SectionCard>
-            <VStack>
-                <Heading
-                    as="h3"
-                    size="md"
-                >
-                    SerenBox
-                </Heading>
-
-                <Image
-                    src="/serenbox.png"
-                    boxSize="50%"
-                    minW="10em"
-                />
-
-                <VStack spacing="0">
-                    <Text align="center">Time left</Text>
-                    <Countdown
-                        ref={ref}
-                        date={date}
-                        onComplete={stopSession}
-                        renderer={({ minutes, seconds }) => {
-                            return (
-                                <Heading
-                                    as="h3"
-                                    size="xl"
-                                    color={
-                                        isSessionRunning
-                                            ? "serena.green.300"
-                                            : "serena.black"
-                                    }
-                                >
-                                    {minutes}:{seconds}
-                                </Heading>
-                            );
-                        }}
-                        onStop={stopSession}
-                        onPause={stopSession}
-                        intervalDelay={500}
-                        onTick={toggleSlots}
-                        autoStart={false}
+        <SectionCard boxSize="full">
+            <Stack
+                direction={{
+                    base: "column",
+                    lg: "row",
+                }}
+                align="center"
+                justify="space-between"
+            >
+                <VStack>
+                    <Heading
+                        as="h3"
+                        size="md"
+                    >
+                        SerenBox
+                    </Heading>
+                    <Image
+                        src="/serenbox.png"
+                        boxSize="50%"
+                        minW="10em"
                     />
+                    <VStack spacing="0">
+                        <Text align="center">Time left</Text>
+                        <Countdown
+                            ref={ref}
+                            date={date}
+                            onComplete={stopSession}
+                            renderer={({ minutes, seconds }) => {
+                                return (
+                                    <Heading
+                                        as="h3"
+                                        size="xl"
+                                        color={
+                                            isSessionRunning
+                                                ? "serena.green.300"
+                                                : "serena.black"
+                                        }
+                                    >
+                                        {minutes}:{seconds}
+                                    </Heading>
+                                );
+                            }}
+                            onStop={stopSession}
+                            onPause={stopSession}
+                            intervalDelay={500}
+                            onTick={toggleSlots}
+                            autoStart={false}
+                        />
+                    </VStack>
                 </VStack>
 
-                {isSessionRunning && (
-                    <Text
-                        align="center"
-                        fontSize="x-large"
-                    >
-                        {explaination}
-                    </Text>
-                )}
-
-                <HStack>
-                    <OilCard
-                        slot="A"
-                        name="Citronella Oil"
-                        capacity={50}
-                        max_capacity={100}
-                        isActive={activeSlot === "A"}
-                    />
-                    <OilCard
-                        slot="B"
-                        name="Cajuput Oil"
-                        capacity={50}
-                        max_capacity={100}
-                        isActive={activeSlot === "B"}
-                    />
-                </HStack>
-            </VStack>
+                <VStack>
+                    {isSessionRunning && (
+                        <Text
+                            align="center"
+                            fontSize="medium"
+                        >
+                            {explaination}
+                        </Text>
+                    )}
+                    <HStack>
+                        <OilCard
+                            slot="A"
+                            name="Citronella Oil"
+                            capacity={50}
+                            max_capacity={100}
+                            isActive={activeSlot === "A"}
+                        />
+                        <OilCard
+                            slot="B"
+                            name="Cajuput Oil"
+                            capacity={50}
+                            max_capacity={100}
+                            isActive={activeSlot === "B"}
+                        />
+                    </HStack>
+                </VStack>
+            </Stack>
         </SectionCard>
     );
 };

@@ -13,7 +13,7 @@ const Navbar = () => {
             <HStack>
                 <Image
                     src="/Serena-Logo.svg"
-                    maxW="5em"
+                    maxW="3.5em"
                 />
                 <Heading
                     color="serena.white"
@@ -31,7 +31,7 @@ const Navbar = () => {
             >
                 <Image
                     src="/github-mark.svg"
-                    maxW="3.5em"
+                    maxW="2.5em"
                 />
             </a>
         </HStack>

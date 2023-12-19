@@ -1,11 +1,15 @@
-import { Center } from "@chakra-ui/react";
+import { Center, CenterProps } from "@chakra-ui/react";
 import { PropsWithChildren } from "react";
 
-export interface SectionCardProps {}
+export interface SectionCardProps extends CenterProps {}
 
-const SectionCard = ({ children }: PropsWithChildren<SectionCardProps>) => {
+const SectionCard = ({
+    children,
+    ...props
+}: PropsWithChildren<SectionCardProps>) => {
     return (
         <Center
+            {...props}
             bg="serena.white"
             rounded="1rem"
             padding="5"
