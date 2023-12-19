@@ -15,6 +15,7 @@ export interface FaceDetectorProps {}
 
 const FaceDetector = (): JSX.Element => {
     const [imgSrc, setImgSrc] = useState(null);
+    console.log(imgSrc);
     const { isSessionRunning, emotions, setEmotions } = useContext(
         DiffusionOptionContext
     );
@@ -51,6 +52,8 @@ const FaceDetector = (): JSX.Element => {
     useEffect(() => {
         if (isSessionRunning && detected) {
             const interval = setInterval(async () => {
+                capture();
+
                 const image = new File(
                     [DataURIToBlob(imgSrc || "")],
                     "user.jpg",
@@ -60,7 +63,6 @@ const FaceDetector = (): JSX.Element => {
                 );
 
                 try {
-                    capture();
                     const emotions = await analyzeEmotions(image);
                     setEmotions(emotions);
                 } catch (err) {
@@ -134,7 +136,7 @@ const FaceDetector = (): JSX.Element => {
                                         left: `${box.xCenter * 100}%`,
                                         width: `${box.width * 100}%`,
                                         height: `${box.height * 100}%`,
-                                        zIndex: 1,
+                                        zIndex: 1000,
                                     }}
                                 />
                             ))}

@@ -148,17 +148,17 @@ const SerenBox = () => {
             >
                 {detectionMode === DetectionMode.INTERVAL
                     ? "regularly"
-                    : "only once"}{" "}
+                    : "only once"}
                 .
             </Box>
         </Text>
     );
     const explaination = (
-        <VStack>
+        <>
             {emotion}
             {choice}
             {reason}
-        </VStack>
+        </>
     );
 
     return (
@@ -171,7 +171,7 @@ const SerenBox = () => {
                 align="center"
                 justify="space-between"
             >
-                <VStack>
+                <VStack flex={{ lg: 1.75 }}>
                     <Heading
                         as="h3"
                         size="md"
@@ -213,15 +213,14 @@ const SerenBox = () => {
                     </VStack>
                 </VStack>
 
-                <VStack>
-                    {isSessionRunning && (
-                        <Text
-                            align="center"
-                            fontSize="medium"
-                        >
-                            {explaination}
-                        </Text>
-                    )}
+                <VStack
+                    spacing={{
+                        base: "4",
+                        md: "8",
+                        lg: "2",
+                    }}
+                    flex={{ lg: 2 }}
+                >
                     <HStack>
                         <OilCard
                             slot="A"
@@ -238,6 +237,16 @@ const SerenBox = () => {
                             isActive={activeSlot === "B"}
                         />
                     </HStack>
+
+                    {isSessionRunning && (
+                        <VStack
+                            align="center"
+                            justify="center"
+                            fontSize="medium"
+                        >
+                            {explaination}
+                        </VStack>
+                    )}
                 </VStack>
             </Stack>
         </SectionCard>
