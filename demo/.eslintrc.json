@@ -24,7 +24,9 @@
         ],
         "func-style": "error",
         "indent": ["error", 4],
-        "semi": ["error", "always"]
+        "semi": ["error", "always"],
+        "react/react-in-jsx-scope": "off",
+        "quotes": ["error", "double"]
     },
     "ignorePatterns": ["dist", ".eslintrc.cjs"]
 }
