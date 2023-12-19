@@ -76,7 +76,7 @@ const FaceDetector = (): JSX.Element => {
                     const emotions = await analyzeEmotions(image);
                     setEmotions(emotions);
                 }
-            }, 3000);
+            }, 2000);
 
             return () => {
                 clearInterval(interval);
