@@ -179,7 +179,7 @@ const SerenBox = () => {
                         SerenBox
                     </Heading>
                     <Image
-                        src="/serenbox.png"
+                        src="/serena-serenbox/serenbox.png"
                         boxSize="50%"
                         minW="10em"
                     />

@@ -2,7 +2,10 @@ import { Box, Heading, Stack, Text, VStack, useTheme } from "@chakra-ui/react";
 import { Camera } from "@mediapipe/camera_utils";
 import FaceDetection from "@mediapipe/face_detection";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { CameraOptions, useFaceDetection } from "react-use-face-detection";
+import {
+    CameraOptions,
+    useFaceDetection,
+} from "../../utils/react-use-face-detection/build/";
 import Webcam from "react-webcam";
 import { DiffusionOptionContext } from "../../contexts/diffusion-option.tsx";
 import analyzeEmotions, {

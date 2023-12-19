@@ -12,7 +12,7 @@ const Navbar = () => {
         >
             <HStack>
                 <Image
-                    src="/Serena-Logo.svg"
+                    src="/serena-serenbox/Serena-Logo.svg"
                     maxW="3.5em"
                 />
                 <Heading
@@ -30,7 +30,7 @@ const Navbar = () => {
                 rel="noreferrer"
             >
                 <Image
-                    src="/github-mark.svg"
+                    src="/serena-serenbox/github-mark.svg"
                     maxW="2.5em"
                 />
             </a>

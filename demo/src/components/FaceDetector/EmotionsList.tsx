@@ -23,7 +23,7 @@ const EmotionCard = ({
             flex="1"
         >
             <Image
-                src={`/emotions/${emotion}.svg`}
+                src={`/serena-serenbox/emotions/${emotion}.svg`}
                 boxSize="4em"
             />
             <Text>{emotion[0].toUpperCase() + emotion.slice(1)}</Text>

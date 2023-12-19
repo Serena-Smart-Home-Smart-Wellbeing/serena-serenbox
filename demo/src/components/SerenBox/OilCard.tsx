@@ -25,7 +25,7 @@ const OilCard = ({
             opacity={isActive ? 1 : 0.5}
         >
             <Image
-                src="/oil.png"
+                src="/serena-serenbox/oil.png"
                 boxSize="7.5em"
             />
             <Text>
