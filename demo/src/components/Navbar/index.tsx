@@ -25,7 +25,7 @@ const Navbar = () => {
             </HStack>
 
             <a
-                href="https://github.com/Serena-Smart-Home-SmartWellbeing"
+                href="https://github.com/Serena-Smart-Home-Smart-Wellbeing"
                 target="_blank"
                 rel="noreferrer"
             >
