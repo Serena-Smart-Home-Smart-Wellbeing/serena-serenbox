@@ -171,7 +171,7 @@ const SerenBox = () => {
                 align="center"
                 justify="space-between"
             >
-                <VStack flex={{ lg: 1.75 }}>
+                <VStack flex={{ lg: 1.5 }}>
                     <Heading
                         as="h3"
                         size="md"
@@ -242,7 +242,7 @@ const SerenBox = () => {
                         <VStack
                             align="center"
                             justify="center"
-                            fontSize="medium"
+                            fontSize="large"
                         >
                             {explaination}
                         </VStack>
