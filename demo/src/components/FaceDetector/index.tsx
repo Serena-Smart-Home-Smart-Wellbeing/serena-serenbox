@@ -24,8 +24,8 @@ const FaceDetector = (): JSX.Element => {
     );
     const theme = useTheme();
     const size = 300;
-    const [width, setWidth] = useState(size);
-    const [height, setHeight] = useState(size);
+    const width = size;
+    const height = size;
 
     const { webcamRef, boundingBox, isLoading, detected, facesDetected } =
         useFaceDetection({
@@ -43,29 +43,6 @@ const FaceDetector = (): JSX.Element => {
                     height,
                 }),
         });
-
-    useEffect(() => {
-        const getUsersCameraSize = async () => {
-            const features = {
-                video: {
-                    width: { ideal: 1800 },
-                    height: { ideal: 900 },
-                },
-            };
-
-            const display = await navigator.mediaDevices.getUserMedia(features);
-
-            // Returns a sequence of MediaStreamTrack objects
-            // representing the video tracks in the stream
-
-            const settings = display.getVideoTracks()[0].getSettings();
-
-            setWidth(settings.width!);
-            setHeight(settings.height!);
-        };
-
-        getUsersCameraSize();
-    }, []);
 
     const capture = useCallback(() => {
         if (webcamRef && isSessionRunning) {
