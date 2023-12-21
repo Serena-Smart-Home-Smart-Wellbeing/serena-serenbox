@@ -17,7 +17,8 @@ Not only that, they can only provide 1 slot for essential oils.
 Configuring them manually can be a hastle and changing oils in the middle of a diffusion session is not as quick as it could be. To help alleviate these problems, we prototyped SerenBox: a smart diffuser that can be configured based on the user’s emotions.
 
 SerenBox is a smart diffuser with 2 essential oils slots that can be managed through our [SerenApp](https://github.com/Serena-Smart-Home-Smart-Wellbeing/serena-android-app)
-and can automatically adjust itself based on the user's emotions that is analyzed by our [Serena Emotion Detector model](https://github.com/Serena-Smart-Home-Smart-Wellbeing/serena-emotion-detector).
+and can automatically adjust itself based on the user's 7 emotions that is analyzed by our [Serena Emotion Detector model](https://github.com/Serena-Smart-Home-Smart-Wellbeing/serena-emotion-detector).
+The 2 slots contains an A slot for energetic oils (e.g. Citronella Oil) and B slot for relaxing oils (e.g. Cajuput Oil).
 SerenBox can be activated by running sessions through the app. Based on those configurations and the user's emotions, SerenBox will automatically toggle either one of the two essential oils the user placed in the SerenBox.
 
 ## Hardware
