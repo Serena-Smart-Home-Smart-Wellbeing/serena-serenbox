@@ -98,3 +98,4 @@ You can take an extra step further by building your own hardware by following ou
 |              Name              |    Student ID    |                                                                                                                  Contribution                                                                                                                  |
 |:------------------------------:|:----------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |      Widiyanto      | (CC) C283BSY4002 | Designed SerenBox schematics. Built SerenBox prototype hardware. Code SerenBox. |
+|      Muhammad Reyhan Ardiya Putra Wijaya      | (CC) C200BSY3485 | Helped writing HTTP requests in Arduino sketch. Create demo website. |
