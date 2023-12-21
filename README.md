@@ -97,4 +97,4 @@ You can take an extra step further by building your own hardware by following ou
 
 |              Name              |    Student ID    |                                                                                                                  Contribution                                                                                                                  |
 |:------------------------------:|:----------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|      Widiyanto      | (CC) C283BSY4002 | Designed SerenBox schematis. Built SerenBox prototype hardware. Code SerenBox. |
+|      Widiyanto      | (CC) C283BSY4002 | Designed SerenBox schematics. Built SerenBox prototype hardware. Code SerenBox. |
