@@ -58,24 +58,33 @@ During the earlier capstone periods, we actually had designed and built the firs
 ![V1 Schematics](results/V1/SerenBox_V1_Schematics.jpg)
 ![V1 Hardware](results/V1/SerenBox_V1_Hardware.jpg)
 
-The V1 took a couple of weeks since only one member was working on it and he was new to using ultrasonic mist makers. After building it, the V1 worked,
-as in the code ran and the ESP8266 was able to fetch data from our backend; and each mist maker was able to be toggled independently.
+The V1 took a couple of weeks since only one member, Widiyanto, was working on it and he was new
+to using ultrasonic mist makers. After building it, the V1 worked, as in the code ran and the ESP8266
+was able to fetch data from our backend; and each mist maker was able to be toggled independently.
 The problem with V1 was that the mist makers were releasing small amounts of mist.
-We thought this was because of the mist makers not getting enough power, so we tried thinking of a new soluton as well as designing a cover for the SerenBox.
+We thought this was because of the mist makers not getting enough power,
+so we tried thinking of a new soluton as well as designing a cover for the SerenBox.
 
 But on Saturday, 16 December 2023, our device broke when we were testing it. Our diffuser container that has water spilled
 and the water went into the ESP8266 and other components. It caused our device to short circuit since the mist maker didn't work
 anymore and there were static sounds coming from the ESP8266. The ESP8266 lights were very dim too.
 
-So we had no choice but to build a new one. Since we had thought of the upgrades for V2 to solve the mist makers not diffusing enough mist, we decided to build V2 instead.
-Since the member that was working on this had ran out of components, he had to wait a few days for new components to arrive such as new mist makers and a new ESP8266.
-Once it arrived, building it took a couple of days and it was finished on Wednesday, 20 December 2023. Since we planned to record our presentation on Thursday, 21 December 2023,
-we didn't have time to create the new code for it, so unfortunately we aren't able to test the V2 connection with our backend. Although, in theory our
-SerenBox V2 should work, we just need to create the code for it and test it; which we didn't have time to do.
+So Widiyanto had to build a new one while also applying upgrades to make the mist makers more powerful
+and the new version was finished on Wednesday, 20 December 2023 around nighttime.
+Since we had planned to record our presentation on the next day; we didn’t have
+time to code and test out the new SerenBox connection with our backend.
+So we were only able to finish the schematics and SerenBox, but not
+a working demo of the hardware. It should work if we had enough time to code it.
 
-Since we didn't have a hardware that is ready for demo for this capstone presentation, we decided to demo our code using Wokwi and
-create a demo website to simulate how our SerenBox would work in real life. Creating this demo was possible to do in a short amount of time since
-we had another member who was done with all of his tasks and had experience making websites, so he was able to help finish the demo in time.
+As a backup plan, the day after our first SerenBox version broke, we decided to make a demonstration website instead to
+simulate how our SerenApp and SerenBox would work in real life. We created the simulation web using React just in case the
+SerenApp’s SerenBox session feature would not be implemented in time and the SerenBox hardware would not be finished in time.
+Reyhan finished developing the SerenBox demo website on Wednesday, 20 December 2023 and at the time when we planned to record our
+presentation on Thursday, 21 December 2023; the SerenApp and SerenBox development progress for the feature of connecting those
+two weren’t looking too bright. So, we just decided to use the demo web and submit our SerenApp as it is and take photos of the
+SerenBox new schematics and hardware. In the end, our main feature got changed due to unexpected circumstances, but the silver
+lining of our demo website to cover those problems is that anybody can try out our project without having to have the SerenBox
+hardware.
 The demo is explained in the [Demo](#demo) section below.
 
 ## Demo
