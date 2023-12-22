@@ -11,21 +11,21 @@
 
 ## Background
 
-Most smart diffusers in the market still needs to be configured manually, even if they can be connected through an app.
+Most smart diffusers in the market still need to be configured manually, even if they can be connected through an app.
 Not only that, they can only provide 1 slot for essential oils.
 
-Configuring them manually can be a hastle and changing oils in the middle of a diffusion session is not as quick as it could be. To help alleviate these problems, we prototyped SerenBox: a smart diffuser that can be configured based on the user’s emotions.
+Configuring them manually can be a hassle and changing oils in the middle of a diffusion session is not as quick as it could be. To help alleviate these problems, we prototyped SerenBox: a smart diffuser that can be configured based on the user’s emotions.
 
 SerenBox is a smart diffuser with 2 essential oils slots that can be managed through our [SerenApp](https://github.com/Serena-Smart-Home-Smart-Wellbeing/serena-android-app)
 and can automatically adjust itself based on the user's 7 emotions that is analyzed by our [Serena Emotion Detector model](https://github.com/Serena-Smart-Home-Smart-Wellbeing/serena-emotion-detector).
-The 2 slots contains an A slot for energetic oils (e.g. Citronella Oil) and B slot for relaxing oils (e.g. Cajuput Oil).
+The 2 slots contain an A slot for energetic oils (e.g. Citronella Oil) and B slot for relaxing oils (e.g. Cajuput Oil).
 SerenBox can be activated by running sessions through the app. Based on those configurations and the user's emotions, SerenBox will automatically toggle either one of the two essential oils the user placed in the SerenBox.
 
 ## Hardware
 
 ![V2 Schematics](<results/V2/SerenBox_V2_Schematics.png>)
 
-SerenBox is controlled by NodeMCU ESP8266 microcontroller. We use Arduino sketch to code our SerenBox which you can see in the [serena-serenbox.ino](sketch/serena-serenbox.ino).
+SerenBox is controlled by a NodeMCU ESP8266 microcontroller. We use Arduino sketch to code our SerenBox which you can see in the [serena-serenbox.ino](sketch/serena-serenbox.ino).
 The code will control 2 ultrasonic mist makers, which we use to diffuse 2 essential oils.
 IC (Integrated Circuit) CD74HC4051E is used to connect from ESP8266 to the mist makers.
 We use other components such as resistors and jumper wires to connect the components together.
@@ -63,7 +63,7 @@ to using ultrasonic mist makers. After building it, the V1 worked, as in the cod
 was able to fetch data from our backend; and each mist maker was able to be toggled independently.
 The problem with V1 was that the mist makers were releasing small amounts of mist.
 We thought this was because of the mist makers not getting enough power,
-so we tried thinking of a new soluton as well as designing a cover for the SerenBox.
+so we tried thinking of a new solution as well as designing a cover for the SerenBox.
 
 But on Saturday, 16 December 2023, our device broke when we were testing it. Our diffuser container that has water spilled
 and the water went into the ESP8266 and other components. It caused our device to short circuit since the mist maker didn't work
@@ -89,7 +89,7 @@ The demo is explained in the [Demo](#demo) section below.
 
 ## Demo
 
-We created 2 demonstrations for our SerenBox. These demos allows you to try out our SerenBox without having to build the hardware.
+We created 2 demonstrations for our SerenBox. These demos allow you to try out our SerenBox without having to build the hardware.
 
 1. [SerenBox Demo Website](https://serena-smart-home-smart-wellbeing.github.io/serena-serenbox/).  
 This website is to showcase how our SerenBox would work in real life. It simulates how the user would configure their SerenBox through our SerenApp and
@@ -108,4 +108,4 @@ You can take an extra step further by building your own hardware by following ou
 |              Name              |    Student ID    |                                                                                                                  Contribution                                                                                                                  |
 |------------------------------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |      Widiyanto      | (CC) C283BSY4002 | Designed SerenBox schematics. Built SerenBox prototype hardware. Code SerenBox. |
-|      Muhammad Reyhan Ardiya Putra Wijaya      | (CC) C200BSY3485 | Helped writing HTTP requests in Arduino sketch. Create demo website. |
+|      Muhammad Reyhan Ardiya Putra Wijaya      | (CC) C200BSY3485 | Helped write HTTP requests in Arduino sketch. Create demo website. |
