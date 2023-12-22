@@ -45,7 +45,7 @@ This solution allows us to have a decoupled system where SerenApp and SerenBox c
 reading data from the database and toggling the mist makers based on the data, while SerenApp only cares about changing that data based on the user's emotions.
 This decoupled design allows better scalability, maintainability, and performance.
 
-To understand how SerenApp chooses which mist maker to toggle, refer to our [SerenApp documentations](https://github.com/Serena-Smart-Home-Smart-Wellbeing/serena-android-app)
+To understand how SerenApp chooses which mist maker to toggle, refer to our [SerenApp documentations](https://github.com/Serena-Smart-Home-Smart-Wellbeing/serena-serenapp?tab=readme-ov-file#serenbox-usage)
 .
 
 ## Prototype Problems & Solutions
